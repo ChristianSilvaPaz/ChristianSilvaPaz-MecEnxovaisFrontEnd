@@ -1,0 +1,17 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.mat-drawer-side {
+  border-right: none;
+}
+
+.spacing-toolbar {
+  flex: 1 1 auto;
+}

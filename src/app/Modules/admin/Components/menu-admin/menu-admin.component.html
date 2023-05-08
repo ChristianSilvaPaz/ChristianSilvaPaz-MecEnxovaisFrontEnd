@@ -1,0 +1,78 @@
+<mat-sidenav-container class="sidenav-container" hasBackdrop="true">
+
+    <mat-sidenav #sidenav mode="side">
+
+        <mat-toolbar color="primary" class="mat-elevation-z6">
+            Gerenciar
+        </mat-toolbar>
+
+        <mat-nav-list>
+            <mat-list-item>
+                <mat-icon matListItemIcon>home</mat-icon>
+                <a matListItemTitle href="/admin">Principal</a>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item>
+                <mat-icon matListItemIcon>group</mat-icon>
+                <a matListItemTitle href="/admin/utilizadores/">Usuários</a>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item>
+                <mat-icon matListItemIcon>upload_file</mat-icon>
+                <a matListItemTitle href="/admin/upload-arquivo">Arquivo</a>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item>
+                <mat-icon matListItemIcon>corporate_fare</mat-icon>
+                <a matListItemTitle href="/admin/organizacoes">Organizações</a>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item>
+                <mat-icon matListItemIcon>schema</mat-icon>
+                <a matListItemTitle href="/admin/classificacoes">Classificações</a>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item>
+                <mat-icon matListItemIcon>backup_table</mat-icon>
+                <a matListItemTitle href="/admin/layouts">Layouts</a>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar color="primary" class="mat-elevation-z6">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+
+            <a mat-button href="/admin">
+                <img mat-icon-button src="assets/images/logo.png" style="margin-right: 6px;" height="26px" alt="logo">
+            </a>
+
+            <span class="spacing-toolbar"></span>
+
+            <button mat-icon-button (click)="logout()">
+                <mat-icon>logout</mat-icon>
+            </button>
+
+        </mat-toolbar>
+
+        <div class="m-3">           
+            <router-outlet></router-outlet>
+        </div>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

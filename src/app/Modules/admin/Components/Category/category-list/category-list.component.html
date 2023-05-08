@@ -1,0 +1,52 @@
+<mat-card-header>
+    <mat-card-title>
+        <mat-icon color="primary">category</mat-icon>&nbsp;&nbsp;&nbsp;
+        Categorias
+    </mat-card-title>
+</mat-card-header>
+
+<mat-card-content>
+
+    <app-category-form [editingCategory]="editingCategory" (updateList)="updateList()"></app-category-form>
+
+    <mat-form-field>
+        <mat-label>Filtrar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateRegistration">
+            <th mat-header-cell *matHeaderCellDef> Data de Cadastro </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateRegistration}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateUpdate">
+            <th mat-header-cell *matHeaderCellDef> Data de Atualização </th>
+            <td mat-cell *matCellDef="let element"> {{element.dateUpdate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Ações </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="primary" (click)="updateCategory(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteCategory(element)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements" />
+
+</mat-card-content>

@@ -1,0 +1,15 @@
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+button {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
