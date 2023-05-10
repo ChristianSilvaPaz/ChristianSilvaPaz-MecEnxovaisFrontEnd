@@ -27,7 +27,7 @@ export default class ApiSettings{
   }
 
   delete() {
-    return { method: 'POST', headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }};
+    return { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }};
   }
 }
 
