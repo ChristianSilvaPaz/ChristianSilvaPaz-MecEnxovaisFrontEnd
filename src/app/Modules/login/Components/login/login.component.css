@@ -1,3 +1,14 @@
+@media screen and (min-width: 879px) {
+    .wrap-login {
+        width: 450px !important;
+        height: 800px !important;
+    }
+
+    .login-pic {
+        width: auto !important;
+    }
+}
+
 .limiter {
     width: 100%;
     margin: 0 auto;
