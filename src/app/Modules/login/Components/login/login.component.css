@@ -1,4 +1,4 @@
-@media screen and (min-width: 879px) {
+@media screen and (max-width: 879px) {
     .wrap-login {
         width: 450px !important;
         height: 800px !important;
