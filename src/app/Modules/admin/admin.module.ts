@@ -17,12 +17,20 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
+
+import { ProductFormComponent } from './Components/Product/product-form/product-form.component';
+import { ProductListComponent } from './Components/Product/product-list/product-list.component';
 
 @NgModule({
   declarations: [
     MenuAdminComponent,
     CategoryFormComponent,
     CategoryListComponent,
+    ProductFormComponent,
+    ProductListComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +48,9 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatPaginatorModule,
     MatTableModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatSliderModule,
   ]
 })
 export class AdminModule { }

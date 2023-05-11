@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryResponse } from '../../../Models/Category/CategoryResponse';
 import { CategoryServices } from '../../../Services/Category-Services';
@@ -34,8 +34,7 @@ export class CategoryFormComponent implements OnInit, OnChanges {
   async createCategory(): Promise<void> {
     let response = await this.categoryServices.create(this.form.controls['name'].value);
 
-    response.status != 200 ?
-      this.alertServices.openAlertError() : this.alertServices.openAlertRegisteredSuccessfully();
+    response.status != 200 ? this.alertServices.openAlertError() : this.alertServices.openAlertRegisteredSuccessfully();
 
     this.resetForm();
     this.updateList.emit();
@@ -46,17 +45,14 @@ export class CategoryFormComponent implements OnInit, OnChanges {
 
     let response = await this.categoryServices.update(this.editingCategory);
 
-    response.status != 204 ?
-      this.alertServices.openAlertError() : this.alertServices.openAlertUpdateSuccessfully();
+    response.status != 204 ? this.alertServices.openAlertError() : this.alertServices.openAlertUpdateSuccessfully();
   
     this.resetForm();
     this.updateList.emit();
   }
 
   loadFormUpdateCategory(category: CategoryResponse): void {
-    this.form.setValue({ 
-      name: category.name,
-    });
+    this.form.setValue({ name: category.name });
 
     this.buttonSaveLabel = 'Atualizar';
   }

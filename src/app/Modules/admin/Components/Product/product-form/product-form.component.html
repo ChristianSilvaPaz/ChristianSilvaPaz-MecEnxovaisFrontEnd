@@ -1,0 +1,45 @@
+<form [formGroup]="form" (ngSubmit)="saveProduct()">
+    <div class="row">
+        <div class="col-sm-12 col-md-2 mb-3">
+            <mat-form-field>
+                <mat-label>Nome do Produto</mat-label>
+                <input type="text" formControlName="name" matInput>
+            </mat-form-field>
+        </div>
+
+        <div class="col-sm-12 col-md-2 mb-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Categoria</mat-label>
+                <mat-select formControlName="categoryId">
+                    <mat-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="col-sm-12 col-md-2 mb-3">
+            <mat-form-field appearance="fill" floatLabel="always">
+                <mat-label>Preço</mat-label>
+                <input formControlName="price" matInput type="number" class="right-align" placeholder="0">
+                <span matTextPrefix>$&nbsp;</span>
+                <span matTextSuffix>.00</span>
+            </mat-form-field>
+        </div>
+
+        <div class="col-sm-12 col-md-2 mb-3">
+            <mat-form-field class="example-margin example-width" appearance="fill">
+                <mat-label>Quantidade</mat-label>
+                <input formControlName="amount" matInput type="number">
+              </mat-form-field>
+        </div>
+
+        <div class="col-sm-12 col-md-2 mb-3">
+            <button type="submit" [disabled]="form.invalid" class="mat-elevation-z6" mat-raised-button
+                color="primary">{{buttonSaveLabel}}</button>
+        </div>
+
+        <div class="col-sm-12 col-md-2 mb-3">
+            <button type="button" (click)="resetForm()" class="mat-elevation-z6" mat-raised-button
+                color="warn">Cancelar</button>
+        </div>
+    </div>
+</form>
