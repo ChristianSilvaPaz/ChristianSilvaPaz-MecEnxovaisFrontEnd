@@ -3,9 +3,9 @@ import { CategoryResponse } from '../../../Models/Category/CategoryResponse';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { CategoryServices } from '../../../Services/Category-Services';
 import Swal from 'sweetalert2';
 import { AlertServices } from 'src/app/Shared/alert-services.service';
+import { CategoryDataServices } from '../../../DataServices/category-data-services.service';
 
 @Component({
   selector: 'app-category-list',
@@ -20,14 +20,21 @@ export class CategoryListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private categoryServices: CategoryServices, private alertServices: AlertServices) {}
+  constructor(private categoryDataServices: CategoryDataServices, private alertServices: AlertServices) {}
 
   ngOnInit(): void {
     this.updateList();
   }
   
   async updateList(): Promise<void> {
-    this.dataSource = new MatTableDataSource(await this.categoryServices.get());
+    let response = await this.categoryDataServices.get();
+
+    if(response.status != 200) this.dataSource = new MatTableDataSource<CategoryResponse>();
+
+    let list = await response.json();
+    list.reverse();
+
+    this.dataSource = new MatTableDataSource(list);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -48,12 +55,14 @@ export class CategoryListComponent implements OnInit {
       cancelButtonText: 'Cancelar',
     }).then(async (result) => {
       if (result.isConfirmed) {
-        let response = await this.categoryServices.delete(category);
+        let response = await this.categoryDataServices.delete(category.id);
 
-        response.status != 204 ? 
-          this.alertServices.openAlertError() : this.alertServices.openAlertDeletedSuccessfully();
+        if (response.status != 204) this.alertServices.openAlertError()
         
-        this.updateList();
+        else {
+          this.alertServices.openAlertDeletedSuccessfully();
+          this.updateList();
+        }
       }
     });
   }

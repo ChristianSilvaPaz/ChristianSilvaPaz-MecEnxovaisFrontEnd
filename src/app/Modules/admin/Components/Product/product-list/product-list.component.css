@@ -1,0 +1,19 @@
+table {
+    width: 100%;
+}
+
+td, th {
+    width: 25%;
+}
+
+.mat-column-actions {
+    text-align: center;
+}
+
+.mat-column-dateRegistration {
+    text-align: center;
+}
+
+.mat-column-dateUpdate {
+    text-align: center;
+}

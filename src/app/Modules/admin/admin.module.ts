@@ -23,6 +23,7 @@ import { MatSliderModule } from '@angular/material/slider';
 
 import { ProductFormComponent } from './Components/Product/product-form/product-form.component';
 import { ProductListComponent } from './Components/Product/product-list/product-list.component';
+import { ClienteCreateComponent } from './Components/Client/cliente-create/cliente-create.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ProductListComponent } from './Components/Product/product-list/product-
     CategoryListComponent,
     ProductFormComponent,
     ProductListComponent,
+    ClienteCreateComponent,
   ],
   imports: [
     CommonModule,

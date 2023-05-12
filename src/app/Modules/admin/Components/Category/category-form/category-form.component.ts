@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryResponse } from '../../../Models/Category/CategoryResponse';
-import { CategoryServices } from '../../../Services/Category-Services';
 import { AlertServices } from 'src/app/Shared/alert-services.service';
+import { CategoryDataServices } from '../../../DataServices/category-data-services.service';
 
 @Component({
   selector: 'app-category-form',
@@ -16,45 +16,50 @@ export class CategoryFormComponent implements OnInit, OnChanges {
   @Input() editingCategory!: CategoryResponse;
   @Output() updateList = new EventEmitter<Event>();
 
-  constructor(private fb: FormBuilder, private categoryServices: CategoryServices, private alertServices: AlertServices) {}
+  constructor(private fb: FormBuilder, private categoryDataServices: CategoryDataServices, private alertServices: AlertServices) {}
 
   ngOnInit(): void {
-    this.form = this.fb.group({name: ['', Validators.required]});
+    this.form = this.fb.group({
+      id: 0,
+      name: ['', Validators.required],
+      dateRegistration: Date,
+      dateUpdate: Date,
+    })
   }
 
   ngOnChanges(): void {
-    if(typeof this.editingCategory  != 'undefined')
-      this.loadFormUpdateCategory(this.editingCategory); 
+    if(typeof this.editingCategory  != 'undefined') {
+      this.form.setValue(this.editingCategory);
+      this.buttonSaveLabel = 'Atualizar';
+    }
   }
 
   saveCategory(): void {
-    this.buttonSaveLabel == 'Cadastrar' ? this.createCategory() : this.updateCategory();
+    this.buttonSaveLabel == 'Cadastrar' ? this.create() : this.update();
   }
 
-  async createCategory(): Promise<void> {
-    let response = await this.categoryServices.create(this.form.controls['name'].value);
+  async create(): Promise<void> {
+    let response = await this.categoryDataServices.create(this.form.value);
 
-    response.status != 200 ? this.alertServices.openAlertError() : this.alertServices.openAlertRegisteredSuccessfully();
-
-    this.resetForm();
-    this.updateList.emit();
+    if (response.status != 200) this.alertServices.openAlertError();
+    
+    else {
+      this.alertServices.openAlertRegisteredSuccessfully();
+      this.resetForm();
+      this.updateList.emit();
+    }
   }
 
-  async updateCategory(): Promise<void> {
-    this.editingCategory.name = this.form.controls['name'].value;
+  async update(): Promise<void> {
+    let response = await this.categoryDataServices.update(this.form.value);
 
-    let response = await this.categoryServices.update(this.editingCategory);
-
-    response.status != 204 ? this.alertServices.openAlertError() : this.alertServices.openAlertUpdateSuccessfully();
-  
-    this.resetForm();
-    this.updateList.emit();
-  }
-
-  loadFormUpdateCategory(category: CategoryResponse): void {
-    this.form.setValue({ name: category.name });
-
-    this.buttonSaveLabel = 'Atualizar';
+    if (response.status != 200) this.alertServices.openAlertError();
+    
+    else {
+      this.alertServices.openAlertUpdateSuccessfully();
+      this.resetForm();
+      this.updateList.emit();
+    }
   }
 
   resetForm(): void {
