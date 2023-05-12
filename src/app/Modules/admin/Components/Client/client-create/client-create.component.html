@@ -1,0 +1,57 @@
+<mat-card>
+    <mat-card-header>
+
+        <mat-card-subtitle class="mat-card-subtitle">
+            <mat-icon color="primary">how_to_reg</mat-icon>&nbsp;&nbsp;&nbsp;Clientes
+        </mat-card-subtitle>
+
+        <mat-card-title>Cadastrar</mat-card-title>
+
+    </mat-card-header>
+
+    <mat-card-content>
+        <mat-stepper #stepper>
+            <mat-step [stepControl]="clientFormGroup">
+
+                <form [formGroup]="clientFormGroup">
+                    <ng-template matStepLabel>Cliente</ng-template>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4 mb-3">
+                            <mat-form-field appearance="fill" class="full-width">
+                              <mat-label>Nome</mat-label>
+                              <input type="text" formControlName="name" matInput>
+                            </mat-form-field>
+                          </div>
+                    </div>
+
+                    <div>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+
+            </mat-step>
+
+            <mat-step [stepControl]="addressFormGroup" label="Fill out your address">
+                <form [formGroup]="addressFormGroup">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Address</mat-label>
+                        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <p>You are now done.</p>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                </div>
+            </mat-step>
+        </mat-stepper>
+    </mat-card-content>
+</mat-card>

@@ -28,6 +28,11 @@ mat-card-content {
     margin-top: 10px !important;
 }
 
+.mat-card-subtitle{
+    display: flex;
+    align-items: center;
+  }
+  
 mat-card-title {
     display: flex !important;
     align-items: center !important;

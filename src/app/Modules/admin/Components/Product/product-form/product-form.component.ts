@@ -29,7 +29,7 @@ export class ProductFormComponent implements OnInit {
  
   async ngOnInit(): Promise<void> {
     this.form = this.fb.group({
-      id: 0,
+      id: "",
       name: ['', Validators.required],
       price: ['', Validators.required],
       amount: ['', Validators.required],

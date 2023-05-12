@@ -20,7 +20,7 @@ export class CategoryFormComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      id: 0,
+      id: "",
       name: ['', Validators.required],
       dateRegistration: Date,
       dateUpdate: Date,

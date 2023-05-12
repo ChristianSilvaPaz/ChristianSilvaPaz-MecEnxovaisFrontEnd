@@ -20,10 +20,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { ProductFormComponent } from './Components/Product/product-form/product-form.component';
 import { ProductListComponent } from './Components/Product/product-list/product-list.component';
-import { ClienteCreateComponent } from './Components/Client/cliente-create/cliente-create.component';
+import { ClientCreateComponent } from './Components/Client/client-create/client-create.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { ClienteCreateComponent } from './Components/Client/cliente-create/clien
     CategoryListComponent,
     ProductFormComponent,
     ProductListComponent,
-    ClienteCreateComponent,
+    ClientCreateComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +54,7 @@ import { ClienteCreateComponent } from './Components/Client/cliente-create/clien
     MatOptionModule,
     MatSelectModule,
     MatSliderModule,
+    MatStepperModule,
   ]
 })
 export class AdminModule { }
