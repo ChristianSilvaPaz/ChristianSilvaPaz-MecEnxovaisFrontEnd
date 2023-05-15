@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoryResponse } from '../../../Models/Category/CategoryResponse';
 import { ProductDataServices } from '../../../DataServices/product-data-services.service';
 import { AlertServices } from 'src/app/Shared/alert-services.service';
-import { ProductResponse } from '../../../Models/Product/ProductResponse';
 import { CategoryDataServices } from '../../../DataServices/category-data-services.service';
+import { Product } from '../../../Models/Product';
+import { Category } from '../../../Models/Category';
 
 @Component({
   selector: 'app-product-form',
@@ -12,12 +12,12 @@ import { CategoryDataServices } from '../../../DataServices/category-data-servic
   styleUrls: ['./product-form.component.css'],
 })
 export class ProductFormComponent implements OnInit {
-  categories!: CategoryResponse[];
+  categories!: Category[];
   buttonSaveLabel = 'Cadastrar';
   form!: FormGroup;
   value = 0;
 
-  @Input() editingProduct!: ProductResponse;
+  @Input() editingProduct!: Product;
   @Output() updateList = new EventEmitter<Event>();
 
   constructor(
@@ -33,14 +33,14 @@ export class ProductFormComponent implements OnInit {
       name: ['', Validators.required],
       price: ['', Validators.required],
       amount: ['', Validators.required],
-      dateRegistration: Date,
-      dateUpdate: Date,
+      dateRegistration: "",
+      dateUpdate: "",
       categoryId: ['', Validators.required],
     });
 
     let response = await this.categoryDataServices.get();
 
-    if (response.status != 200) this.categories = new Array<CategoryResponse>();
+    if (response.status != 200) this.categories = new Array<Category>();
     
     else this.categories = await response.json();
   }

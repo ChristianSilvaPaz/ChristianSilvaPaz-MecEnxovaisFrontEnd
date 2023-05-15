@@ -25,6 +25,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { ProductFormComponent } from './Components/Product/product-form/product-form.component';
 import { ProductListComponent } from './Components/Product/product-list/product-list.component';
 import { ClientCreateComponent } from './Components/Client/client-create/client-create.component';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ClientCreateComponent } from './Components/Client/client-create/client-
     MatSelectModule,
     MatSliderModule,
     MatStepperModule,
+    NgxMaskDirective,
   ]
 })
 export class AdminModule { }

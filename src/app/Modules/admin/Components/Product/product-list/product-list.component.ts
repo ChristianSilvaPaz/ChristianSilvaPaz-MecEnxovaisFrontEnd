@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ProductResponse } from '../../../Models/Product/ProductResponse';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ProductDataServices } from '../../../DataServices/product-data-services.service';
 import { AlertServices } from 'src/app/Shared/alert-services.service';
 import Swal from 'sweetalert2';
+import { Product } from '../../../Models/Product';
 
 @Component({
   selector: 'app-product-list',
@@ -14,8 +14,8 @@ import Swal from 'sweetalert2';
 })
 export class ProductListComponent implements OnInit{
   displayedColumns: string[] = ['name', 'dateRegistration', 'dateUpdate', 'actions'];
-  dataSource = new MatTableDataSource<ProductResponse>();
-  editingProduct!: ProductResponse;
+  dataSource = new MatTableDataSource<Product>();
+  editingProduct!: Product;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -29,7 +29,7 @@ export class ProductListComponent implements OnInit{
   async updateList(): Promise<void> {
     let response = await this.productDataServices.get();
 
-    if(response.status != 200) this.dataSource = new MatTableDataSource<ProductResponse>();
+    if(response.status != 200) this.dataSource = new MatTableDataSource<Product>();
 
     let list = await response.json();
     list.reverse();
@@ -39,11 +39,11 @@ export class ProductListComponent implements OnInit{
     this.dataSource.sort = this.sort;
   }
 
-  update(product: ProductResponse): void {
+  update(product: Product): void {
     this.editingProduct = product;
   }
 
-  delete(product: ProductResponse): void {
+  delete(product: Product): void {
     Swal.fire({
       title: 'Você tem certeza disso?',
       text: 'Excluir o produto: ' + product.name,

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments';
 import ApiSettings from 'src/app/Shared/ApiSettings';
-import { CategoryCreate } from '../Models/Category/CategoryCreate';
-import { CategoryResponse } from '../Models/Category/CategoryResponse';
+import { Category } from '../Models/Category';
 
 @Injectable({
   providedIn: 'root',
@@ -14,11 +13,11 @@ export class CategoryDataServices {
     return await fetch(`${environment.urlAPI}Category`, this.settings.get());
   }
 
-  async create(category: CategoryCreate): Promise<Response> {
+  async create(category: Category): Promise<Response> {
     return await fetch(`${environment.urlAPI}Category`, this.settings.post(category));
   }
 
-  async update(category: CategoryResponse): Promise<Response> {
+  async update(category: Category): Promise<Response> {
     return await fetch(`${environment.urlAPI}Category/${category.id}`, this.settings.put(category));
   }
 

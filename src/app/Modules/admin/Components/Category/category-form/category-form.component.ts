@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CategoryResponse } from '../../../Models/Category/CategoryResponse';
 import { AlertServices } from 'src/app/Shared/alert-services.service';
 import { CategoryDataServices } from '../../../DataServices/category-data-services.service';
+import { Category } from '../../../Models/Category';
 
 @Component({
   selector: 'app-category-form',
@@ -13,7 +13,7 @@ export class CategoryFormComponent implements OnInit, OnChanges {
   buttonSaveLabel = 'Cadastrar';
   form!: FormGroup;
 
-  @Input() editingCategory!: CategoryResponse;
+  @Input() editingCategory!: Category;
   @Output() updateList = new EventEmitter<Event>();
 
   constructor(private fb: FormBuilder, private categoryDataServices: CategoryDataServices, private alertServices: AlertServices) {}
@@ -22,8 +22,8 @@ export class CategoryFormComponent implements OnInit, OnChanges {
     this.form = this.fb.group({
       id: "",
       name: ['', Validators.required],
-      dateRegistration: Date,
-      dateUpdate: Date,
+      dateRegistration: "",
+      dateUpdate: "",
     })
   }
 
