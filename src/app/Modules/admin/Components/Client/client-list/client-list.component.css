@@ -1,5 +1,14 @@
+.button-add {
+    text-align: end;
+    padding-right: 50px;
+}
+
 table {
     width: 100%;
+}
+
+.mat-column-phoneNumber1 {
+    text-align: center;
 }
 
 .mat-column-actions {

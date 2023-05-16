@@ -26,6 +26,7 @@ import { ProductFormComponent } from './Components/Product/product-form/product-
 import { ProductListComponent } from './Components/Product/product-list/product-list.component';
 import { ClientCreateComponent } from './Components/Client/client-create/client-create.component';
 import { NgxMaskDirective } from 'ngx-mask';
+import { ClientListComponent } from './Components/Client/client-list/client-list.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NgxMaskDirective } from 'ngx-mask';
     ProductFormComponent,
     ProductListComponent,
     ClientCreateComponent,
+    ClientListComponent,
   ],
   imports: [
     CommonModule,
