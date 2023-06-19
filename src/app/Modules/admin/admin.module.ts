@@ -22,10 +22,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatStepperModule } from '@angular/material/stepper';
 
+import { CurrencyMaskModule } from "ng2-currency-mask";
+import { NgxMaskDirective } from 'ngx-mask';
+
 import { ProductFormComponent } from './Components/Product/product-form/product-form.component';
 import { ProductListComponent } from './Components/Product/product-list/product-list.component';
 import { ClientCreateComponent } from './Components/Client/client-create/client-create.component';
-import { NgxMaskDirective } from 'ngx-mask';
 import { ClientListComponent } from './Components/Client/client-list/client-list.component';
 
 @NgModule({
@@ -59,6 +61,7 @@ import { ClientListComponent } from './Components/Client/client-list/client-list
     MatSliderModule,
     MatStepperModule,
     NgxMaskDirective,
+    CurrencyMaskModule
   ]
 })
 export class AdminModule { }

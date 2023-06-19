@@ -19,9 +19,7 @@
         <div class="col-sm-12 col-md-2 mb-3">
             <mat-form-field appearance="fill" floatLabel="always">
                 <mat-label>Preço</mat-label>
-                <input formControlName="price" matInput type="number" class="right-align" placeholder="0">
-                <span matTextPrefix>$&nbsp;</span>
-                <span matTextSuffix>.00</span>
+                <input matInput formControlName="price" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" />
             </mat-form-field>
         </div>
 
