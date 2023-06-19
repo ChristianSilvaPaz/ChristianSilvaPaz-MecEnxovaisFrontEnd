@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    urlAPI: 'https://mecenxovaisapi.azurewebsites.net/api/'
+    urlAPI: 'http://158.69.35.253/api/'
   };
