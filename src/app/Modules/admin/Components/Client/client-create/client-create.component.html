@@ -94,28 +94,52 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-12 col-md-4 mb-3">
+                        <div class="col-sm-12 col-md-6 mb-3">
+                            <mat-form-field appearance="fill" class="full-width">
+                                <mat-label>Nome do Estabelecimento de Referência 1</mat-label>
+                                <input type="text" formControlName="referenceName1" matInput>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 mb-3">
                             <mat-form-field appearance="fill" class="full-width">
                                 <mat-label>Telefone de Referência 1</mat-label>
                                 <input mask="(00) 00000-0000" type="text" formControlName="referencePhone1" matInput>
                             </mat-form-field>
                         </div>
+                    </div>    
 
-                        <div class="col-sm-12 col-md-4 mb-3">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 mb-3">
+                            <mat-form-field appearance="fill" class="full-width">
+                                <mat-label>Nome do Estabelecimento de Referência 2</mat-label>
+                                <input type="text" formControlName="referenceName2" matInput>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 mb-3">
                             <mat-form-field appearance="fill" class="full-width">
                                 <mat-label>Telefone de Referência 2</mat-label>
                                 <input mask="(00) 00000-0000" type="text" formControlName="referencePhone2" matInput>
                             </mat-form-field>
                         </div>
+                    </div>
 
-                        <div class="col-sm-12 col-md-4 mb-3">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 mb-3">
+                            <mat-form-field appearance="fill" class="full-width">
+                                <mat-label>Nome do Estabelecimento de Referênicia 3</mat-label>
+                                <input type="text" formControlName="referenceName3" matInput>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 mb-3">
                             <mat-form-field appearance="fill" class="full-width">
                                 <mat-label>Telefone de Referência 3</mat-label>
                                 <input mask="(00) 00000-0000" type="text" formControlName="referencePhone3" matInput>
                             </mat-form-field>
                         </div>
                     </div>
-
 
                     <div>
                         <button mat-button matStepperNext [disabled]="clientFormGroup.invalid" class="mat-elevation-z6" mat-raised-button

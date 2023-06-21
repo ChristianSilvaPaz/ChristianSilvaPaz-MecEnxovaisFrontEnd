@@ -6,10 +6,10 @@ table {
     text-align: center;
 }
 
-.mat-column-dateRegistration {
+.mat-column-price {
     text-align: center;
 }
 
-.mat-column-dateUpdate {
+.mat-column-amount {
     text-align: center;
 }

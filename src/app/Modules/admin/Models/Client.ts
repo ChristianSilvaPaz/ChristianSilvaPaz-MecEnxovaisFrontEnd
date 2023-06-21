@@ -9,11 +9,17 @@ export interface Client {
     sex: string
     rg: string
     dispatchingAgency: string
+
+    referenceName1: string
+    referenceName2: string
+    referenceName3: string
+
     referencePhone1: string
     referencePhone2: string
     referencePhone3: string
     dateRegistration: string
     dateUpdate: string
+    
     address: Address
   }
   

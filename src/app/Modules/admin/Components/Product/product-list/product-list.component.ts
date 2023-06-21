@@ -13,7 +13,7 @@ import { Product } from '../../../Models/Product';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit{
-  displayedColumns: string[] = ['name', 'dateRegistration', 'dateUpdate', 'actions'];
+  displayedColumns: string[] = ['name', 'price', 'amount', 'actions'];
   dataSource = new MatTableDataSource<Product>();
   editingProduct!: Product;
 

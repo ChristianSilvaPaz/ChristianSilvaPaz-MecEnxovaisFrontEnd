@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientDataServices } from '../../../DataServices/client-data-services.service';
 import { Client } from '../../../Models/Client';
 import { AlertServices } from 'src/app/Shared/alert-services.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-create',
@@ -16,24 +17,32 @@ export class ClientCreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private clientDataServices: ClientDataServices,
-    private alertServices: AlertServices
+    private alertServices: AlertServices,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.clientFormGroup = this.fb.group({
       id: '',
       name: ['', Validators.required],
-      phoneNumber1: ['', Validators.required],
-      phoneNumber2: Number,
+      phoneNumber1: String,
+      phoneNumber2: String,
       cpf: ['', Validators.required],
       birthDate: ['', Validators.required],
-      maritalStatus: ['', Validators.required],
-      sex: ['', Validators.required],
-      rg: ['', Validators.required],
-      dispatchingAgency: ['', Validators.required],
-      referencePhone1: ['', Validators.required],
-      referencePhone2: ['', Validators.required],
-      referencePhone3: Number,
+      maritalStatus: String,
+      sex: String,
+      rg: null,
+      dispatchingAgency: null,
+
+      referenceName1: null,
+      referenceName2: null,
+      referenceName3: null,
+
+      referencePhone1: String,
+      referencePhone2: String,
+      referencePhone3: String,
+      
       dateRegistration: '',
       dateUpdate: '',
     });
@@ -61,6 +70,7 @@ export class ClientCreateComponent implements OnInit {
     
     else {
       this.alertServices.openAlertRegisteredSuccessfully();
+      this.router.navigate(['/admin/clientes'], { relativeTo: this.route });
     }
   }
 }

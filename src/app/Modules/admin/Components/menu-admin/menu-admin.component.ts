@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menu-admin',
@@ -7,5 +9,24 @@ import { Component } from '@angular/core';
 })
 export class MenuAdminComponent {
   showFiller = false;
-  logout() {}
+  
+  constructor(private router: Router) {}
+
+  logout() {
+    Swal.fire({
+      title: 'Sair ?',
+      text: 'Você realmente deseja sair!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sair',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.router.navigate(['login']);
+        localStorage.clear();
+      }
+    });
+  }
 }
