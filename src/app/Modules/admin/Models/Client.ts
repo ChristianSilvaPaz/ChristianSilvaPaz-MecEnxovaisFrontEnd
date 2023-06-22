@@ -20,7 +20,7 @@ export interface Client {
     dateRegistration: string
     dateUpdate: string
     
-    address: Address
+    address?: Address
   }
   
   export interface Address {

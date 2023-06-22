@@ -13,15 +13,19 @@ export class ClientDataServices {
     return await fetch(`${environment.urlAPI}Client`, this.settings.get());
   }
 
-  async create(Client: Client): Promise<Response> {
-    return await fetch(`${environment.urlAPI}Client`, this.settings.post(Client));
+  async getById(id: string): Promise<Response> {
+    return await fetch(`${environment.urlAPI}Client/${id}`, this.settings.get());
   }
 
-  async update(Client: Client): Promise<Response> {
-    return await fetch(`${environment.urlAPI}Client/${Client.id}`, this.settings.put(Client));
+  async create(client: Client): Promise<Response> {
+    return await fetch(`${environment.urlAPI}Client`, this.settings.post(client));
+  }
+
+  async update(client: Client): Promise<Response> {
+    return await fetch(`${environment.urlAPI}Client/${client.id}`, this.settings.put(client));
   }
 
   async delete(id: string): Promise<Response> {
-    return await fetch(`${environment.urlAPI}CLient/${id}`, this.settings.delete());
+    return await fetch(`${environment.urlAPI}Client/${id}`, this.settings.delete());
   }
 }

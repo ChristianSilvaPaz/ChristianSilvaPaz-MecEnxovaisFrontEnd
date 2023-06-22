@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientDataServices } from '../../../DataServices/client-data-services.service';
-import { Client } from '../../../Models/Client';
 import { AlertServices } from 'src/app/Shared/alert-services.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Client } from '../../../Models/Client';
 
 @Component({
-  selector: 'app-client-create',
-  templateUrl: './client-create.component.html',
-  styleUrls: ['./client-create.component.css'],
+  selector: 'app-client-update',
+  templateUrl: './client-update.component.html',
+  styleUrls: ['./client-update.component.css']
 })
-export class ClientCreateComponent implements OnInit {
+export class ClientUpdateComponent implements OnInit{
   clientFormGroup!: FormGroup;
   addressFormGroup!: FormGroup;
+  clientId!: string;
 
   constructor(
     private fb: FormBuilder,
@@ -22,7 +23,9 @@ export class ClientCreateComponent implements OnInit {
     private router: Router,
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.route.params.subscribe((params) => (this.clientId = params['id'])); 
+
     this.clientFormGroup = this.fb.group({
       id: '',
       name: ['', Validators.required],
@@ -58,18 +61,28 @@ export class ClientCreateComponent implements OnInit {
       dateUpdate: '',
       clientId: '',
     });
+
+    let response = await this.clientDataServices.getById(this.clientId);
+    if (response.status != 200) this.alertServices.openAlertError();
+    else {
+      let client: Client = await response.json();
+      this.addressFormGroup.setValue(client.address!);
+
+      delete client.address;
+      this.clientFormGroup.setValue(client);
+    }
   }
 
-  async create(): Promise<void> {
+  async update(): Promise<void> {
     let client: Client = this.clientFormGroup.value;
     client.address = this.addressFormGroup.value;
 
-    let response = await this.clientDataServices.create(client);
+    let response = await this.clientDataServices.update(client);
 
     if (response.status != 200) this.alertServices.openAlertError();
     
     else {
-      this.alertServices.openAlertRegisteredSuccessfully();
+      this.alertServices.openAlertUpdateSuccessfully();
       this.router.navigate(['/admin/clientes'], { relativeTo: this.route });
     }
   }

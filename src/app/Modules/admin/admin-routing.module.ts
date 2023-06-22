@@ -5,6 +5,8 @@ import { CategoryListComponent } from './Components/Category/category-list/categ
 import { ProductListComponent } from './Components/Product/product-list/product-list.component';
 import { ClientCreateComponent } from './Components/Client/client-create/client-create.component';
 import { ClientListComponent } from './Components/Client/client-list/client-list.component';
+import { SaleListComponent } from './Components/Sale/sale-list/sale-list.component';
+import { ClientUpdateComponent } from './Components/Client/client-update/client-update.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,8 @@ const routes: Routes = [
       { path: 'produtos', component: ProductListComponent },
       { path: 'clientes', component: ClientListComponent},
       { path: 'clientes/cadastrar', component: ClientCreateComponent},
+      { path: 'clientes/:id/atualizar', component: ClientUpdateComponent},
+      { path: 'vendas', component: SaleListComponent},
     ],
   },
 ];

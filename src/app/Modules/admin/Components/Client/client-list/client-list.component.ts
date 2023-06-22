@@ -4,6 +4,8 @@ import { Client } from '../../../Models/Client';
 import { ClientDataServices } from '../../../DataServices/client-data-services.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import Swal from 'sweetalert2';
+import { AlertServices } from 'src/app/Shared/alert-services.service';
 
 @Component({
   selector: 'app-client-list',
@@ -17,7 +19,7 @@ export class ClientListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private clientDataServices: ClientDataServices) {}
+  constructor(private clientDataServices: ClientDataServices, private alertServices: AlertServices) {}
 
   ngOnInit(): void {
     this.updateList();
@@ -36,7 +38,29 @@ export class ClientListComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   
-  delete(client: Client): void {}
+  delete(client: Client): void {
+    Swal.fire({
+      title: 'Você tem certeza disso?',
+      text: 'Excluir o cliente: ' + client.name,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#1E90FF',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Excluir',
+      cancelButtonText: 'Cancelar',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        let response = await this.clientDataServices.delete(client.id);
+
+        if (response.status != 204) this.alertServices.openAlertError()
+        
+        else {
+          this.alertServices.openAlertDeletedSuccessfully();
+          this.updateList();
+        }
+      }
+    });
+  }
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
